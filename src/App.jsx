@@ -14,17 +14,22 @@ function App() {
 
   const getWeather = async (str) => {
     const URL = `/api/weather`;
-    try {
-      const resp = await axios.get(URL, {
-        params: {
-          q: str,
-          units: "imperial",
-        },
-      });
+
+    const resp = await axios.get(URL, {
+      params: {
+        q: str,
+        units: "imperial",
+      },
+    });
+    if (resp.data.name === "Error") {
+      alert("Something went wrong");
+    } else {
       setWeather(resp.data);
-    } catch (e) {
-      alert(`City does not exist. Try again`);
     }
+    console.log(resp.data.name);
+    console.log(resp.status);
+
+    // alert(`City does not exist. Try again`);
   };
 
   // UseEffect
