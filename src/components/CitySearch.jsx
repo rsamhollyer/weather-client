@@ -12,6 +12,7 @@ function CitySearch(props) {
     setCityName({ city: inputText });
     setInputText("");
   };
+
   return (
     <form onSubmit={formSubmitHandler} className="search-form">
       <input

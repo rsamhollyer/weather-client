@@ -1,5 +1,7 @@
 function Weather(props) {
+  // Props
   const { weather } = props;
+
   return (
     <>
       {weather.name ? (
