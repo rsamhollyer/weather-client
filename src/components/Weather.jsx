@@ -1,6 +1,6 @@
 function Weather(props) {
   // Props
-  const { weather } = props;
+  const { weather, savedSearches, setSavedSearches } = props;
 
   return (
     <>
@@ -10,9 +10,7 @@ function Weather(props) {
           <h3>Current Temp : {weather.main.temp}</h3>
           <h3>Current Humidity : {weather.main.humidity}</h3>
         </div>
-      ) : (
-        <h2>...</h2>
-      )}
+      ) : null}
     </>
   );
 }
