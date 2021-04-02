@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import CitySearch from "./components/CitySearch";
-
 function App() {
   // State
   const [inputText, setInputText] = useState("");
@@ -10,13 +9,25 @@ function App() {
 
   //Axios
 
-  const getWeather = async (obj) => {
-    const URL = `api.openweathermap.org/data/2.5/weather?`;
-    const data = await axios.get(URL, {
-      params: { q: cityName, appid: "6a52720ab8e519a37c28b8c621021acf" },
-    });
-    setWeather(data.data);
+  const getWeather = async (str) => {
+    const URL = `https://api.openweathermap.org/data/2.5/weather`;
+    try {
+      const resp = await axios.get(URL, {
+        params: { q: str, appid: process.env.REACT_APP_WEATHER_KEY },
+      });
+      console.log(resp.data);
+      setWeather(resp.data);
+    } catch (e) {
+      alert(`City does not exist. Try again`);
+    }
   };
+
+  // UseEffect
+  useEffect(() => {
+    if (cityName.city) {
+      getWeather(cityName.city);
+    }
+  }, [cityName]);
 
   return (
     <div className="App">

@@ -4,7 +4,6 @@ function CitySearch(props) {
 
   // Handlers
   const inputTextHandler = (e) => {
-    console.log(e.target.value);
     setInputText(e.target.value);
   };
 
@@ -13,9 +12,8 @@ function CitySearch(props) {
     setCityName({ city: inputText });
     setInputText("");
   };
-
   return (
-    <form className="search-form">
+    <form onSubmit={formSubmitHandler} className="search-form">
       <input
         onChange={inputTextHandler}
         type="text"
@@ -24,7 +22,7 @@ function CitySearch(props) {
         placeholder="City Name"
         value={inputText}
       />
-      <input onClick={formSubmitHandler} type="submit" value="Search" />
+      <input type="submit" value="Search" />
     </form>
   );
 }
