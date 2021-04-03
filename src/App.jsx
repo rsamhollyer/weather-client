@@ -9,13 +9,8 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [cityName, setCityName] = useState({});
   const [weather, setWeather] = useState({});
-  const [savedSearches, setSavedSearches] = useState([
-    { id: 1, city: "Dallas", temp: 55.12, humidity: 23, time: "12:05" },
-    { id: 2, city: "Pheonix", temp: 95.12, humidity: 13, time: "12:15" },
-    { id: 3, city: "San Francisco", temp: 45.12, humidity: 23, time: "01:25" },
-    { id: 4, city: "New York", temp: 25.12, humidity: 33, time: "2:55" },
-  ]);
-
+  const [savedSearches, setSavedSearches] = useState([]);
+  console.log(savedSearches);
   //Axios
 
   const getWeather = async (str) => {
@@ -33,8 +28,20 @@ function App() {
     }
   };
 
+  const getSearches = async () => {
+    const URL = `/api/weather/saved`;
+
+    try {
+      const resp = await axios.get(URL);
+      setSavedSearches([...resp.data]);
+    } catch (err) {
+      alert("Something went wrong");
+    }
+  };
+
   // UseEffect
   useEffect(() => {
+    getSearches();
     if (cityName.city) {
       getWeather(cityName.city);
     }
