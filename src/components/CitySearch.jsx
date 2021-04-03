@@ -1,6 +1,11 @@
+import { useState } from "react";
+
 function CitySearch(props) {
+  //State
+  const [inputText, setInputText] = useState("");
+
   // Props
-  const { setCityName, inputText, setInputText } = props;
+  const { getWeather } = props;
 
   // Handlers
   const inputTextHandler = (e) => {
@@ -9,8 +14,7 @@ function CitySearch(props) {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    setCityName({ city: inputText });
-    setInputText("");
+    getWeather(inputText);
   };
 
   return (

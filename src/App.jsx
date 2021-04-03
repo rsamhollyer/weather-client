@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import CitySearch from "./components/CitySearch";
 import Weather from "./components/Weather";
 import SavedSearches from "./components/SavedSearches";
+import "./styles/app.scss";
 
 function App() {
   // State
-  const [inputText, setInputText] = useState("");
-  const [cityName, setCityName] = useState({});
+
   const [weather, setWeather] = useState({});
   const [savedSearches, setSavedSearches] = useState([]);
-  console.log(savedSearches);
-  //Axios
 
+  //Axios
   const getWeather = async (str) => {
     const URL = `/api/weather`;
     try {
@@ -24,43 +23,64 @@ function App() {
       });
       setWeather(resp.data);
     } catch (err) {
-      alert("Something went wrong");
+      alert("Something went wrong with getWeather", err);
     }
   };
 
   const getSearches = async () => {
     const URL = `/api/weather/saved`;
-
     try {
       const resp = await axios.get(URL);
       setSavedSearches([...resp.data]);
     } catch (err) {
-      alert("Something went wrong");
+      alert("Something went wrong getSearches", err);
+    }
+  };
+
+  const saveSearch = async (weatherObject) => {
+    const URL = `/api/weather/save`;
+    try {
+      const resp = await axios.post(URL, weatherObject);
+      getSearches();
+      return resp;
+    } catch (err) {
+      alert("Something went wrong saveSearch", err);
+    }
+  };
+
+  const deleteSearch = async (weatherId) => {
+    const URL = `/api/weather/delete/${weatherId}`;
+    try {
+      const resp = await axios.delete(URL, { data: { weatherId } });
+      getSearches();
+    } catch (err) {
+      alert(`Something went wrong deleteSearch : ${err}`);
     }
   };
 
   // UseEffect
-  useEffect(() => {
-    getSearches();
-    if (cityName.city) {
-      getWeather(cityName.city);
-    }
-  }, [cityName]);
+  // useEffect(() => {
+  //   getSearches();
+  // }, []);
 
   return (
     <div className="App">
       <h1>WEATHER APP</h1>
-      <CitySearch
-        setCityName={setCityName}
-        inputText={inputText}
-        setInputText={setInputText}
-      />
+      <CitySearch getWeather={getWeather} />
+
       <Weather
         weather={weather}
         savedSearches={savedSearches}
         setSavedSearches={setSavedSearches}
+        saveSearch={saveSearch}
       />
-      <SavedSearches savedSearches={savedSearches} />
+
+      <SavedSearches
+        deleteSearch={deleteSearch}
+        savedSearches={savedSearches}
+        setSavedSearches={setSavedSearches}
+        getSearches={getSearches}
+      />
     </div>
   );
 }

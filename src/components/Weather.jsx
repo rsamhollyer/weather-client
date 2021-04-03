@@ -1,6 +1,17 @@
 function Weather(props) {
   // Props
-  const { weather, savedSearches, setSavedSearches } = props;
+  const { weather, saveSearch } = props;
+
+  //Functions
+  const saveHandler = (weather) => {
+    const weatherObject = {
+      city: weather.name,
+      temp: weather.main.temp,
+      humidity: weather.main.humidity,
+    };
+
+    saveSearch(weatherObject); // send to backend
+  };
 
   return (
     <>
@@ -9,6 +20,7 @@ function Weather(props) {
           <h2>City Name : {weather.name}</h2>
           <h3>Current Temp : {weather.main.temp}</h3>
           <h3>Current Humidity : {weather.main.humidity}</h3>
+          <button onClick={() => saveHandler(weather)}>Save</button>
         </div>
       ) : null}
     </>
