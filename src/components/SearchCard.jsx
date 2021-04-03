@@ -1,7 +1,6 @@
 import Moment from "react-moment";
 
 function SearchCard(props) {
-  // Props
   const { search, deleteSearch } = props;
   const createdAtTime = search.created_at;
 

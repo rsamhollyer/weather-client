@@ -1,13 +1,10 @@
 import { useState } from "react";
 
 function CitySearch(props) {
-  //State
   const [inputText, setInputText] = useState("");
 
-  // Props
   const { getWeather } = props;
 
-  // Handlers
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };

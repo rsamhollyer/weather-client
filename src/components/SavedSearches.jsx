@@ -1,10 +1,8 @@
 import SearchCard from "./SearchCard";
 import { useEffect } from "react";
 function SavedSearches(props) {
-  // Props
   const { savedSearches, deleteSearch, getSearches } = props;
 
-  // UseEffect
   useEffect(() => {
     getSearches();
   }, []);

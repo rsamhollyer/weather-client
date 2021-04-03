@@ -6,12 +6,9 @@ import SavedSearches from "./components/SavedSearches";
 import "./styles/app.scss";
 
 function App() {
-  // State
-
   const [weather, setWeather] = useState({});
   const [savedSearches, setSavedSearches] = useState([]);
 
-  //Axios
   const getWeather = async (str) => {
     const URL = `/api/weather`;
     try {
@@ -57,11 +54,6 @@ function App() {
       alert(`Something went wrong deleteSearch : ${err}`);
     }
   };
-
-  // UseEffect
-  // useEffect(() => {
-  //   getSearches();
-  // }, []);
 
   return (
     <div className="App">

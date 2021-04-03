@@ -1,8 +1,6 @@
 function Weather(props) {
-  // Props
   const { weather, saveSearch } = props;
 
-  //Functions
   const saveHandler = (weather) => {
     const weatherObject = {
       city: weather.name,
