@@ -12,46 +12,66 @@ function App() {
   const getWeather = async (str) => {
     const URL = `/api/weather`;
     try {
-      const resp = await axios.get(URL, {
-        params: {
-          q: str,
-          units: "imperial",
-        },
-      });
+      const resp = await axios
+        .get(URL, {
+          params: {
+            q: str,
+            units: "imperial",
+          },
+        })
+        .catch((err) => {
+          throw new Error(
+            err.response?.data || `Unknown error. Please try again.`
+          );
+        });
       setWeather(resp.data);
     } catch (err) {
-      alert("Something went wrong with getWeather", err);
+      alert(`${err}`);
     }
   };
 
   const getSearches = async () => {
     const URL = `/api/weather/saved`;
     try {
-      const resp = await axios.get(URL);
+      const resp = await axios.get(URL).catch((err) => {
+        throw new Error(
+          err.response?.data || `Unknown error. Please try again.`
+        );
+      });
       setSavedSearches([...resp.data]);
     } catch (err) {
-      alert("Something went wrong getSearches", err);
+      alert(`${err}`);
     }
   };
 
   const saveSearch = async (weatherObject) => {
     const URL = `/api/weather/save`;
     try {
-      const resp = await axios.post(URL, weatherObject);
+      const resp = await axios.post(URL, weatherObject).catch((err) => {
+        throw new Error(
+          err.response?.data || `Unknown error. Please try again.`
+        );
+      });
       getSearches();
       setWeather("");
     } catch (err) {
-      alert("Something went wrong saveSearch", err);
+      alert(`${err}`);
     }
   };
 
   const deleteSearch = async (weatherId) => {
     const URL = `/api/weather/delete/${weatherId}`;
     try {
-      const resp = await axios.delete(URL, { data: { weatherId } });
+      const resp = await axios
+        .delete(URL, { data: { weatherId } })
+        .catch((err) => {
+          throw new Error(
+            err.response?.data || `Unknown error. Please try again.`
+          );
+        });
       getSearches();
     } catch (err) {
-      alert(`Something went wrong deleteSearch : ${err}`);
+      alert(`${err}`);
     }
   };
 
