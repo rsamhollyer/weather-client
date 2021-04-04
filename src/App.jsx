@@ -4,8 +4,10 @@ import CitySearch from "./components/CitySearch";
 import Weather from "./components/Weather";
 import SavedSearches from "./components/SavedSearches";
 import "./styles/app.scss";
+import { useAlert } from "react-alert";
 
 function App() {
+  const alert = useAlert();
   const [weather, setWeather] = useState({});
   const [savedSearches, setSavedSearches] = useState([]);
 
@@ -26,7 +28,7 @@ function App() {
         });
       setWeather(resp.data);
     } catch (err) {
-      alert(`${err}`);
+      alert.show(`${err}`);
     }
   };
 
@@ -40,7 +42,7 @@ function App() {
       });
       setSavedSearches([...resp.data]);
     } catch (err) {
-      alert(`${err}`);
+      alert.show(`${err}`);
     }
   };
 
@@ -55,7 +57,7 @@ function App() {
       getSearches();
       setWeather("");
     } catch (err) {
-      alert(`${err}`);
+      alert.show(`${err}`);
     }
   };
 
@@ -71,7 +73,7 @@ function App() {
         });
       getSearches();
     } catch (err) {
-      alert(`${err}`);
+      alert.show(`${err}`);
     }
   };
 
