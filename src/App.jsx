@@ -39,7 +39,7 @@ function App() {
     try {
       const resp = await axios.post(URL, weatherObject);
       getSearches();
-      return resp;
+      setWeather("");
     } catch (err) {
       alert("Something went wrong saveSearch", err);
     }
@@ -56,24 +56,30 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>WEATHER APP</h1>
-      <CitySearch getWeather={getWeather} />
+    <>
+      <h1 className="fw-bold fs-4">Weather App</h1>
+      <div className="App container">
+        <div className="row">
+          <CitySearch getWeather={getWeather} />
+        </div>
 
-      <Weather
-        weather={weather}
-        savedSearches={savedSearches}
-        setSavedSearches={setSavedSearches}
-        saveSearch={saveSearch}
-      />
+        <div className="row">
+          <Weather
+            weather={weather}
+            savedSearches={savedSearches}
+            setSavedSearches={setSavedSearches}
+            saveSearch={saveSearch}
+          />
+        </div>
 
-      <SavedSearches
-        deleteSearch={deleteSearch}
-        savedSearches={savedSearches}
-        setSavedSearches={setSavedSearches}
-        getSearches={getSearches}
-      />
-    </div>
+        <SavedSearches
+          deleteSearch={deleteSearch}
+          savedSearches={savedSearches}
+          setSavedSearches={setSavedSearches}
+          getSearches={getSearches}
+        />
+      </div>
+    </>
   );
 }
 

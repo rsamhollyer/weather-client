@@ -8,8 +8,8 @@ function SavedSearches(props) {
   }, []);
 
   return (
-    <div className="previous-searches">
-      <h3>Prior Search History</h3>
+    <div className="row mt-4 previous-searches">
+      <h2 className="fw-bold fs-5">Saved Searches</h2>
       {savedSearches.length > 0
         ? savedSearches.map((search) => {
             return (
