@@ -1,53 +1,50 @@
 # Weather App
 
-## Install Node
+## About
 
-You need to have [Node](https://nodejs.org/en/download/) installed.
-Alternatively, you can use these [commands](https://nodejs.org/en/download/package-manager/)
+This is the React client for a simple weather app for the [Varsity Hype](https://www.varsityhype.com/) coding challenge.
+![Weather App](/public/assets/githubimages/WeatherApp.png)
 
-## Clone repo
+## Prerequisites
 
-Create a local directory. Initialize it with git
+[Node.js](https://nodejs.org/en/download/)
 
-```
-git init
-```
+## Installation
 
-Clone down the repo.
+Clone the repo.
 
-```
+```bash
 git clone https://github.com/rsamhollyer/weather-client.git
+cd weather-client
 ```
 
-## Install Dependencies
+Install dependencies.
 
 ```bash
 npm install
 ```
 
-![Weather App](/public/assets/githubimages/WeatherApp.png)
+## Usage
 
-## Proxy location
+### Proxy location
 
-The app is being served to port 9999. If you change the server port don't forget to update the proxy in the package.json file to match.
+The Node server for the app with instructions to install is available [here](https://github.com/rsamhollyer/weather-server).
+The app is served to port 9999 by default. If you change the server port don't forget to update the proxy in the `package.json` file to match.
 
 ![Proxy](/public/assets/githubimages/Proxy.png)
 
-## Run React server (optional)
+### Developing with React
 
-The app runs from the server repo. If you need to make any changes, run the React server along with the created back end.
+The app runs from the server repo. If you need to make any changes, run the React server along with the [back end](https://github.com/rsamhollyer/weather-server).
 
-```
+```bash
 npm start
-
 ```
 
-## To create a build version (optional)
+Once you finish making changes to the client, you will need to update the backend.
 
-If you make any changes to the client, you will need to update the backend.
-
-```
+```bash
 npm run build
 ```
 
-This will create a build directory in your root. It is already ignored by git. Move all the contents inside this directory to the server public directory.
+This will create a build directory in your root. It is already included in `.gitignore`. Move all the contents inside this `build/` directory to the server `public/` directory.
