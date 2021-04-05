@@ -6,4 +6,4 @@
 npm install
 ```
 
-[Weather App](/public/assets/githubimages/WeatherApp.png)
+![Weather App](/public/assets/githubimages/WeatherApp.png)
