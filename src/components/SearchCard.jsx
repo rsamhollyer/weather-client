@@ -22,7 +22,7 @@ function SearchCard(props) {
         <h4> {search.temp}&deg;F</h4>
         <h4>Humidity : {search.humidity}%</h4>
         <h6>
-          <Moment format={"MM/DD/YYYY HH:MM:SS"} date={createdAtTime} />
+          <Moment format={"MM/DD/YYYY hh:mm:ss"} date={createdAtTime} />
         </h6>
       </div>
     </div>
